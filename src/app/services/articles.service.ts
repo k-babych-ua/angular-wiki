@@ -15,15 +15,27 @@ export class ArticlesService {
   ) {
     this._articlesKey = "angular-wiki-articles";
 
-    if (!localStorage.getItem(this._articlesKey))
+    if (!localStorage.getItem(this._articlesKey)) {
       localStorage.setItem(this._articlesKey, JSON.stringify(this.articlesMockService.produce()));
+    }
+
+    this._articles = JSON.parse(localStorage.getItem(this._articlesKey));
+  }
+
+  public getArticle(id: number): IArticle {
+    const articleIndex = this._articles.findIndex(a => a.id == id);
+    if (articleIndex < 0) {
+      console.error("Article with given id doesn't exist");
+      return null;
+    }
+
+    return this._articles[articleIndex];
   }
 
   public getArticles(amount?: number): IArticle[] {
     if (amount < 1 || !amount)
-      amount = 15;
+      amount = 100;
 
-    this._articles = JSON.parse(localStorage.getItem(this._articlesKey));
     return this._articles.slice(0, amount);
   }
 
@@ -64,6 +76,7 @@ export class ArticlesService {
     const articleIndex = this._articles.findIndex(a => a.id == id);
     if (articleIndex < 0) {
       console.error("Article with given id doesn't exist");
+      return null;
     }
 
     this._articles.splice(articleIndex, 1);

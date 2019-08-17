@@ -1,0 +1,8 @@
+mat-list-item.article-preview {
+    height: max-content !important;
+    margin: 5px;
+}
+
+div.mat-list-item-content {
+    min-height: 72px;
+}

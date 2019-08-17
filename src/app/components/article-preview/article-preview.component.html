@@ -1,1 +1,11 @@
-<p>article-preview works!</p>
+<mat-list-item class="article-preview">
+    <mat-icon matListIcon>folder</mat-icon>
+    <h3 matLine>{{article.title}}</h3>
+    <p matLine>
+        {{article.firstParagraph}}
+    </p>
+    <button mat-icon-button (click)="openArticle()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+</mat-list-item>

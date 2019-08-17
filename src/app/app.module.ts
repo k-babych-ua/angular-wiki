@@ -8,6 +8,12 @@ import { ArticlesListComponent } from './components/articles-list/articles-list.
 import { ArticlePreviewComponent } from './components/article-preview/article-preview.component';
 import { ArticleFullComponent } from './components/article-full/article-full.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule }  from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +24,12 @@ import { ArticleFullComponent } from './components/article-full/article-full.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
