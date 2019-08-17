@@ -1,0 +1,5 @@
+{
+    "appService.showBuildDuringDeployPrompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/7b597719-4354-4f26-925a-a75eba9ebc42/resourceGroups/angular/providers/Microsoft.Web/sites/angular-wiki-app",
+    "appService.deploySubpath": "dist\\angular-wiki"
+}
