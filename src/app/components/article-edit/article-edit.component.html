@@ -1,0 +1,37 @@
+<mat-card>
+    <div class="article-container">
+        <div class="title-container">
+            <mat-form-field class="editor">
+                <input matInput class="editor" required type="text" [(ngModel)]="article.title" placeholder="Title">
+            </mat-form-field>
+        </div>
+
+        <div class="image-container">
+            <mat-form-field class="editor">
+                <input matInput #imageSource rows="4" maxlength="255" class="editor fp" placeholder="Image source"
+                    [(ngModel)]="article.imageUrl">
+                <mat-hint align="end">{{imageSource.value.length}} / 255</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="fp-container">
+            <mat-form-field class="editor">
+                <textarea matInput #fp required rows="4" maxlength="480" class="editor fp" placeholder="First paragraph"
+                    [(ngModel)]="article.firstParagraph"></textarea>
+                <mat-hint align="end">{{fp.value.length}} / 480</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col body-container">
+            <mat-form-field class="editor">
+                <textarea matInput rows="12" class="editor" placeholder="Article body"
+                    [(ngModel)]="article.body"></textarea>
+            </mat-form-field>
+        </div>
+
+        <mat-card-actions align="end">
+            <button mat-stroked-button color="primary" (click)="saveArticle()">Save</button>
+            <button mat-stroked-button color="primary" (click)="undoArticle()">Undo</button>
+        </mat-card-actions>
+    </div>
+</mat-card>
