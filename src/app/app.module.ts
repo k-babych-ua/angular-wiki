@@ -8,6 +8,9 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
 import { ArticlePreviewComponent } from './components/article-preview/article-preview.component';
 import { ArticleFullComponent } from './components/article-full/article-full.component';
+import { ArticleEditComponent } from './components/article-edit/article-edit.component';
+import { ArticleNotFoundComponent } from './components/article-not-found/article-not-found.component';
+import { HeaderComponent } from './components/header/header.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
@@ -15,6 +18,11 @@ import { MatIconModule }  from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ArticlesListHeaderComponent } from './components/articles-list-header/articles-list-header.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteArticleComponent } from './components/modals/delete-article/delete-article.component';
+import { UpdateArticleComponent } from './components/modals/update-article/update-article.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MainPageComponent,
     ArticlesListComponent,
     ArticlePreviewComponent,
-    ArticleFullComponent
+    ArticleFullComponent,
+    ArticlesListHeaderComponent,
+    ArticleEditComponent,
+    ArticleNotFoundComponent,
+    HeaderComponent,
+    DeleteArticleComponent,
+    UpdateArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +47,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    DeleteArticleComponent,
+    UpdateArticleComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
