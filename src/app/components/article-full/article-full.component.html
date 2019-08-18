@@ -1,14 +1,36 @@
-<mat-card class="article-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{article.title}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-        <p>{{article.body}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-    </mat-card-actions>
-</mat-card>
+<div class="article-container">
+    <div class="row">
+        <div class="col title-container">
+            <h3 [class.hidden]="isEditMode">
+                {{article.title}}
+            </h3>
+            <input class="editor" [class.hidden]="!isEditMode" type="text" [(ngModel)]="article.title">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 image-container">
+            <img *ngIf="article.imageUrl" src="{{article.imageUrl}}">
+        </div>
+        <div class="col-9 fp-container">
+            <p [class.hidden]="isEditMode"> 
+                {{article.firstParagraph}}
+            </p>
+            <textarea class="editor" [class.hidden]="!isEditMode" rows="3" maxlength="255" [(ngModel)]="article.firstParagraph"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col body-container">
+            <p [class.hidden]="isEditMode">
+                {{article.body}}
+            </p>
+            <textarea class="editor" [class.hidden]="!isEditMode" rows="6" [(ngModel)]="article.body"></textarea>
+        </div>
+    </div>
+    <div class="article-footer">
+        <button mat-stroked-button color="primary" [class.hidden]="isEditMode" (click)="editArticle()">Edit</button>
+        <button mat-stroked-button color="primary" [class.hidden]="isEditMode" (click)="deleteArticle()">Delete</button>
+
+        <button mat-stroked-button color="primary" [class.hidden]="!isEditMode" (click)="saveArticle()">Save</button>
+        <button mat-stroked-button color="primary" [class.hidden]="!isEditMode" (click)="undoArticle()">Undo</button>
+    </div>
+</div>

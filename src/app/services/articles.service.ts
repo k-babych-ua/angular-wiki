@@ -83,6 +83,16 @@ export class ArticlesService {
     localStorage.setItem(this._articlesKey, JSON.stringify(this._articles));
   }
 
+  public getArticleCopy(article: IArticle): IArticle {
+    return {
+      id: article.id,
+      body: article.body,
+      firstParagraph: article.firstParagraph,
+      imageUrl: article.imageUrl,
+      title: article.title
+    };
+  }
+
   private generateIdForArticle(): number {
     let currentId = Math.max(...this._articles.map(x => x.id));
     return ++currentId;

@@ -6,3 +6,14 @@ mat-list-item.article-preview {
 div.mat-list-item-content {
     min-height: 72px;
 }
+
+img.thumbnail {
+    width: 62px !important;
+    max-width: 62px !important;
+    height: auto !important;
+}
+
+div.text {
+    width: 100%;
+    white-space: pre-wrap !important;
+}
