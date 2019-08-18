@@ -5,14 +5,11 @@
 img {
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 div.row {
     padding: 5px;
-}
-
-.article-footer {
-    float: right;
 }
 
 button[mat-stroked-button] {
@@ -24,8 +21,13 @@ input.editor {
     width: 100%;
 }
 
-textarea.editor {
+.editor {
     width: 100%;
+    overflow: auto;
+}
+
+.fp {
+    resize: none;
 }
 
 .hidden {
