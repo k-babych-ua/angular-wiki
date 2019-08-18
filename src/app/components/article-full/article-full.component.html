@@ -26,14 +26,9 @@
         </div>
 
         <mat-card-actions align="end">
-                <button mat-stroked-button color="primary" [class.hidden]="isEditMode" (click)="editArticle()">Edit</button>
-                <button mat-stroked-button color="primary" [class.hidden]="isEditMode"
+                <button mat-stroked-button color="primary" (click)="editArticle()">Edit</button>
+                <button mat-stroked-button color="primary"
                     (click)="deleteArticle()">Delete</button>
-    
-                <button mat-stroked-button color="primary" [class.hidden]="!isEditMode"
-                    (click)="saveArticle()">Save</button>
-                <button mat-stroked-button color="primary" [class.hidden]="!isEditMode"
-                    (click)="undoArticle()">Undo</button>
         </mat-card-actions>
     </div>
 </mat-card>
