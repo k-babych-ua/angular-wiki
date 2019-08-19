@@ -72,8 +72,8 @@ export class ArticleEditComponent implements OnInit {
     }
     else {
       let dialogRef = this.matDialog.open(UpdateArticleComponent, {
-        height: '180px',
-        width: '350px',
+        height: '160px',
+        width: '340px'
       });
 
       dialogRef.afterClosed().subscribe(result => {

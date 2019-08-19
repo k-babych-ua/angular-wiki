@@ -1,8 +1,11 @@
 <div>
-    <app-articles-list-header></app-articles-list-header>
-    <br>
-    <br>
-    <mat-list>
-        <app-article-preview *ngFor="let article of articles" [article]="article"></app-article-preview>
-    </mat-list>
+    <mat-card>
+        <app-articles-list-header></app-articles-list-header>
+        <br>
+        <br>
+        <mat-list>
+            <app-article-preview *ngFor="let article of articles" [article]="article"></app-article-preview>
+        </mat-list>
+        <br>
+    </mat-card>
 </div>

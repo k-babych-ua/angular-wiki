@@ -41,8 +41,8 @@ export class ArticleFullComponent implements OnInit {
 
   public deleteArticle(): void {
     let dialogRef = this.matDialog.open(DeleteArticleComponent, {
-      height: '200px',
-      width: '350px',
+      height: '160px',
+      width: '340px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
