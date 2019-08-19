@@ -1,4 +1,11 @@
 <mat-card>
+    <div class="container-header">
+        <h4 *ngIf="isNewArticle">New article</h4>
+        <h4 *ngIf="!isNewArticle">Edit article</h4>
+        <mat-divider></mat-divider>
+        <br>
+    </div>
+
     <div class="article-container">
         <div class="title-container">
             <mat-form-field class="editor">
@@ -22,7 +29,7 @@
             </mat-form-field>
         </div>
 
-        <div class="col body-container">
+        <div class="body-container">
             <mat-form-field class="editor">
                 <textarea matInput rows="12" class="editor" placeholder="Article body"
                     [(ngModel)]="article.body"></textarea>

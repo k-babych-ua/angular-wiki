@@ -11,6 +11,8 @@ import { ArticleFullComponent } from './components/article-full/article-full.com
 import { ArticleEditComponent } from './components/article-edit/article-edit.component';
 import { ArticleNotFoundComponent } from './components/article-not-found/article-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
+import { DeleteArticleComponent } from './components/modals/delete-article/delete-article.component';
+import { UpdateArticleComponent } from './components/modals/update-article/update-article.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
@@ -21,8 +23,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ArticlesListHeaderComponent } from './components/articles-list-header/articles-list-header.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DeleteArticleComponent } from './components/modals/delete-article/delete-article.component';
-import { UpdateArticleComponent } from './components/modals/update-article/update-article.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UpdateArticleComponent } from './components/modals/update-article/updat
     MatGridListModule,
     FormsModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     DeleteArticleComponent,
