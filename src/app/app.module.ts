@@ -37,7 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ArticleNotFoundComponent,
     HeaderComponent,
     DeleteArticleComponent,
-    UpdateArticleComponent
+    UpdateArticleComponent    
   ],
   imports: [
     BrowserModule,
