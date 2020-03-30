@@ -5,6 +5,7 @@ import { IArticle } from 'src/app/models/entities/IArticle';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteArticleComponent } from '../modals/delete-article/delete-article.component';
+import { Article } from 'src/app/models/entities/Article';
 
 @Component({
   selector: 'app-article-full',
@@ -12,7 +13,7 @@ import { DeleteArticleComponent } from '../modals/delete-article/delete-article.
   styleUrls: ['./article-full.component.css']
 })
 export class ArticleFullComponent implements OnInit {
-  public article: IArticle;
+  public article: Article;
 
   constructor(
     public matDialog: MatDialog,
@@ -22,7 +23,7 @@ export class ArticleFullComponent implements OnInit {
   ) {
     if (this._route.snapshot.params && this._route.snapshot.params.id) {
       const id = this._route.snapshot.params.id;
-      this.article = this._articlesService.getArticle(id);
+      this.article = new Article(this._articlesService.getArticle(id));
 
       if (!this.article)
         this._router.navigate(['/not-found']);
@@ -33,6 +34,7 @@ export class ArticleFullComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.article.getTagsString());
   }
 
   public editArticle(): void {

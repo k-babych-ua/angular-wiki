@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { IArticle } from 'src/app/models/entities/IArticle';
 import { UpdateArticleComponent } from '../modals/update-article/update-article.component';
+import { Article } from 'src/app/models/entities/Article';
 
 @Component({
   selector: 'app-article-edit',
@@ -31,15 +32,16 @@ export class ArticleEditComponent implements OnInit {
         body: "",
         firstParagraph: "",
         imageUrl: "",
-        title: ""
-      };
+        title: "",
+        tags: []
+      } as Article;
     }
     else {
       if (this._route.snapshot.params && this._route.snapshot.params.id) {
         const id = this._route.snapshot.params.id;
 
         let article = this._articlesService.getArticle(id);
-        //Create a copy to ensure that changes will be save only after press "Save" button (avoid probles with two-way binding)
+        //Create a copy to ensure that changes will be saved only after press "Save" button (avoid probles with two-way binding)
         this.article = this._articlesService.getArticleCopy(article);
       }
       else {

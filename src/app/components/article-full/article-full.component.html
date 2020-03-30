@@ -8,6 +8,13 @@
             </div>
         </div>
         <div class="row">
+            <div class="col">
+                <p>
+                    Tags: {{article.getTagsString()}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
             <div *ngIf="article.imageUrl" class="col-2 image-container">
                 <img src="{{article.imageUrl}}">
             </div>

@@ -24,6 +24,7 @@ import { ArticlesListHeaderComponent } from './components/articles-list-header/a
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GetTagsStringPipe } from './pipes/get-tags-string.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ArticleNotFoundComponent,
     HeaderComponent,
     DeleteArticleComponent,
-    UpdateArticleComponent    
+    UpdateArticleComponent,
+    GetTagsStringPipe    
   ],
   imports: [
     BrowserModule,
