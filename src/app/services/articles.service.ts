@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IArticle } from '../models/entities/IArticle';
 import { ArticlesMockService } from './articles-mock.service';
+import { Article } from '../models/entities/Article';
 
 @Injectable({
   providedIn: 'root'
@@ -89,8 +90,9 @@ export class ArticlesService {
       body: article.body,
       firstParagraph: article.firstParagraph,
       imageUrl: article.imageUrl,
-      title: article.title
-    };
+      title: article.title,
+      tags: article.tags
+    } as Article;
   }
 
   private generateIdForArticle(): number {
