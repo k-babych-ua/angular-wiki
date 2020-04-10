@@ -15,7 +15,8 @@ export class ArticlesListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.articles = this._articlesService.getArticles();
+    this._articlesService.getArticles()
+      .subscribe(response => this.articles = response.items);
   }
 
 }
