@@ -20,11 +20,19 @@ namespace AngularWiki.API.Models.Entities.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ArticleDbConfig());
-            modelBuilder.ApplyConfiguration(new TagDbConfig());
-            modelBuilder.ApplyConfiguration(new ArticleTagDbConfig());
+            try
+            {
+                modelBuilder.ApplyConfiguration(new ArticleDbConfig());
+                modelBuilder.ApplyConfiguration(new TagDbConfig());
+                modelBuilder.ApplyConfiguration(new ArticleTagDbConfig());
 
-            base.OnModelCreating(modelBuilder);
+                base.OnModelCreating(modelBuilder);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Trace.TraceError($"Error during model creating ({this.GetType()}): {e.Message}");
+                throw e;
+            }
         }
     }
 }
