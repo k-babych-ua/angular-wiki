@@ -6,6 +6,7 @@ using AngularWiki.API.Models.Entities.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,22 +28,40 @@ namespace AngularWiki.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AngularWikiDbContext>(options =>
+            try
             {
-                options.UseSqlServer(Configuration["AppSettings:ConnectionString"]);
-            });
+                string sqlConnectionString = "";
 
-            services.AddControllers();
+                if (string.IsNullOrWhiteSpace(sqlConnectionString))
+                    sqlConnectionString = Configuration.GetConnectionString("SqlServerConnection");
 
-            services.AddCors(options =>
+                services.AddDbContext<AngularWikiDbContext>(options =>
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnection"));
+                });
+
+                services.AddControllers();
+
+                services.AddCors(options =>
+                {
+                    options.AddPolicy(
+                        "CorsPolicy",
+                        builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+                });
+
+                services.AddSpaStaticFiles(config =>
+                {
+                    config.RootPath = "ClientApp/dist";
+                });
+            }
+            catch (Exception e)
             {
-                options.AddPolicy(
-                    "CorsPolicy",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
+                System.Diagnostics.Trace.TraceError($"Error during configuration of the services: {e.Message}");
+                throw e;
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +72,8 @@ namespace AngularWiki.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSpaStaticFiles();
+
             app.UseCors("CorsPolicy");
 
             app.UseRouting();
@@ -60,11 +81,11 @@ namespace AngularWiki.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
 
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
             });
         }
     }
