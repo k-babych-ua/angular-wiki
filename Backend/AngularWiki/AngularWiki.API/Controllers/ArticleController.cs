@@ -7,6 +7,7 @@ using AngularWiki.API.Models.Responses;
 using AngularWiki.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace AngularWiki.API.Controllers
@@ -31,11 +32,13 @@ namespace AngularWiki.API.Controllers
 
             try
             {
-                response.Items = DbContext.Articles;
+                response.Items = await DbContext.Articles.ToListAsync();
                 response.IsSuccess = true;
             }
             catch (Exception e)
             {
+                System.Diagnostics.Trace.TraceError(e.Message);
+
                 response.IsSuccess = false;
                 response.Message = e.Message;
             }
@@ -53,11 +56,13 @@ namespace AngularWiki.API.Controllers
 
             try
             {
-                response.Item = DbContext.Articles.FirstOrDefault(a => a.Id == id);
+                response.Item = await DbContext.Articles.FirstOrDefaultAsync(a => a.Id == id);
                 response.IsSuccess = true;
             }
             catch (Exception e)
             {
+                System.Diagnostics.Trace.TraceError(e.Message);
+
                 response.IsSuccess = false;
                 response.Message = e.Message;
             }
@@ -71,8 +76,20 @@ namespace AngularWiki.API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> PostArticle(Article postArticle)
         {
-            var response = await new ArticleService(DbContext)
-                .CreateArticle(postArticle);
+            ISingleResponse<Article> response = new SingleResponse<Article>();
+
+            try
+            {
+                response = await new ArticleService(DbContext)
+                    .CreateArticle(postArticle);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Trace.TraceError(e.Message);
+
+                response.IsSuccess = false;
+                response.Message = e.Message;
+            }
 
             return response.ToHttpResponse();
         }
@@ -83,8 +100,20 @@ namespace AngularWiki.API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> PatchArticle(Article patchArticle)
         {
-            var response = await new ArticleService(DbContext)
-                .PatchArticle(patchArticle);
+            ISingleResponse<Article> response = new SingleResponse<Article>();
+
+            try
+            {
+                response = await new ArticleService(DbContext)
+                    .PatchArticle(patchArticle);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Trace.TraceError(e.Message);
+
+                response.IsSuccess = false;
+                response.Message = e.Message;
+            }
 
             return response.ToHttpResponse();
         }
@@ -95,8 +124,20 @@ namespace AngularWiki.API.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> DeleteArticle(long id)
         {
-            var response = await new ArticleService(DbContext)
-                .DeleteArticle(id);
+            IResponse response = new Response();
+
+            try
+            {
+                response = await new ArticleService(DbContext)
+                    .DeleteArticle(id);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Trace.TraceError(e.Message);
+
+                response.IsSuccess = false;
+                response.Message = e.Message;
+            }
 
             return response.ToHttpResponse();
         }
