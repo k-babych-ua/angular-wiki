@@ -19,8 +19,13 @@ export class Article implements IArticle {
     }
 
     public getTagsString(): string {
-        return this.tags
-            .map(t => t.title)
-            .join(", ");
+        if (this.tags && this.tags.length > 0){
+            return this.tags
+                .map(t => t.title)
+                .join(", ");
+        }
+        else {
+            return "";
+        }
     }
 }

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularWiki.API", "AngularWiki.API\AngularWiki.API.csproj", "{0CBC6041-BD8F-4722-A5E3-79AD77EEA077}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CBC6041-BD8F-4722-A5E3-79AD77EEA077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CBC6041-BD8F-4722-A5E3-79AD77EEA077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CBC6041-BD8F-4722-A5E3-79AD77EEA077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CBC6041-BD8F-4722-A5E3-79AD77EEA077}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A51B415-6281-4CE7-A48C-62055BAC5C8B}
+	EndGlobalSection
+EndGlobal

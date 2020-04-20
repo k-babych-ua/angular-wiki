@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Backend/AngularWiki/AngularWiki.API/bin
+/Backend/AngularWiki/AngularWiki.API/obj
+/Backend/AngularWiki/AngularWiki.API/appsettings.Development.json
+/Backend/AngularWiki/AngularWiki.API/ClientApp/dist
+/Backend/AngularWiki/AngularWiki.API/Properties/PublishProfiles

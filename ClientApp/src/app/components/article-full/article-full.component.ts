@@ -8,51 +8,56 @@ import { DeleteArticleComponent } from '../modals/delete-article/delete-article.
 import { Article } from 'src/app/models/entities/Article';
 
 @Component({
-  selector: 'app-article-full',
-  templateUrl: './article-full.component.html',
-  styleUrls: ['./article-full.component.css']
+   selector: 'app-article-full',
+   templateUrl: './article-full.component.html',
+   styleUrls: ['./article-full.component.css']
 })
 export class ArticleFullComponent implements OnInit {
-  public article: Article;
+   public article: Article;
 
-  constructor(
-    public matDialog: MatDialog,
-    private _articlesService: ArticlesService,
-    private _route: ActivatedRoute,
-    private _router: Router
-  ) {
-    if (this._route.snapshot.params && this._route.snapshot.params.id) {
-      const id = this._route.snapshot.params.id;
-      this.article = new Article(this._articlesService.getArticle(id));
+   constructor(
+      public matDialog: MatDialog,
+      private _articlesService: ArticlesService,
+      private _route: ActivatedRoute,
+      private _router: Router
+   ) {
+      if (this._route.snapshot.params && this._route.snapshot.params.id) {
+         const id = this._route.snapshot.params.id;
 
-      if (!this.article)
-        this._router.navigate(['/not-found']);
-    }
-    else {
-      this._router.navigate(['/not-found']);
-    }
-  }
+         this._articlesService.getArticle(id)
+            .subscribe(response => {
+               if (!response.isSuccess || !response.item)
+                  this._router.navigate(['/not-found']);
 
-  ngOnInit() {
-    console.log(this.article.getTagsString());
-  }
-
-  public editArticle(): void {
-    this._router.navigate([`/article/${this.article.id}/edit`]);
-  }
-
-  public deleteArticle(): void {
-    let dialogRef = this.matDialog.open(DeleteArticleComponent, {
-      height: '160px',
-      width: '340px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this._articlesService.deleteArticle(this.article.id);
-
-        this._router.navigate([""]);
+               this.article = new Article(response.item);
+               console.log(this.article.getTagsString());
+            });
       }
-    });
-  }
+      else {
+         this._router.navigate(['/not-found']);
+      }
+   }
+
+   ngOnInit() {
+   }
+
+   public editArticle(): void {
+      this._router.navigate([`/article/${this.article.id}/edit`]);
+   }
+
+   public deleteArticle(): void {
+      let dialogRef = this.matDialog.open(DeleteArticleComponent, {
+         height: '160px',
+         width: '340px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+         if (result) {
+            this._articlesService.deleteArticle(this.article.id)
+               .subscribe(response => {
+                  response.isSuccess && this._router.navigate([""]);
+               });
+         }
+      });
+   }
 }
